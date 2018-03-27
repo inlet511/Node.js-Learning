@@ -13,6 +13,8 @@
   "author": "Ken An",
   "license": "ISC",
   "dependencies": {
-    "lodash": "^4.17.5"
+    "lodash": "^4.17.5",
+    "request": "^2.85.0",
+    "yargs": "^11.0.0"
   }
 }
