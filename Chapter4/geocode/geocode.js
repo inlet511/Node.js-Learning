@@ -10,9 +10,9 @@ var geocodeAddress = (address,city,callback)=>{
             callback('No result');
         }else{
             callback(undefined,{
-                address:body.result[0].name,
-                lat:    body.result[0].location.lat,
-                lng:    body.result[0].location.lng
+                address:body.result[1].name,
+                lat:    body.result[1].location.lat,
+                lng:    body.result[1].location.lng
             });
         }
     

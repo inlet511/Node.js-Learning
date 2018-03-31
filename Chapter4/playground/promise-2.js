@@ -11,9 +11,9 @@ var geocodeAddress = (address,city) => {
                     reject("Can't Locate the place");
                 } else {
                     resolve({
-                        address: body.result[0].name,
-                        lat: body.result[0].location.lat,
-                        lng: body.result[0].location.lng
+                        address: body.result[1].name,
+                        lat: body.result[1].location.lat,
+                        lng: body.result[1].location.lng
                     });
                 }
             }
