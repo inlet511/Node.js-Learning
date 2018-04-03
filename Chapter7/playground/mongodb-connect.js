@@ -17,15 +17,15 @@ MongoClient.connect(url, (err,client)=>{
     console.log('Connected to MongoDB server');
 
     var db = client.db('TodoApp');
-    // db.collection('Todos').insertOne({
-    //     text:'Something to do',
-    //     completed:false
-    // },(err,result)=>{
-    //     if(err){
-    //         return console.log('Unable to insert todo',err);
-    //     }
-    //     console.log(JSON.stringify(result.ops, undefined, 2));
-    // });
+    db.collection('Todos').insertOne({
+        text:'Something to do',
+        completed:false
+    },(err,result)=>{
+        if(err){
+            return console.log('Unable to insert todo',err);
+        }
+        console.log(JSON.stringify(result.ops, undefined, 2));
+    });
 
     //Insert new doc into Users Collection.(name, age, location)
 
