@@ -1,38 +1,28 @@
-var mongoose = require('mongoose');
+var express = require('express');
+var bodyParser = require('body-parser');
 
-//设置使用默认Promise
-mongoose.Promise = global.Promise;
-//连接数据库
-mongoose.connect('mongodb://localhost:27017/TodoApp');
+var {mongoose} = require('./db/mongoose');
+var {Todo} = require('./models/todo');
+var {User} = require('./models/user');
 
-//定义模型
-var Todo = mongoose.model('Todo',{
-    text:{
-        type:String,
-        required:true,
-        minlength: 1,
-        trim:true
-    },
-    completed:{
-        type:Boolean,
-        default: false
-    },
-    completedAt:{
-        type:Number,
-        default:null
-    }
+var app = express();
+
+app.use(bodyParser.json());
+
+app.post('/todos',(req,res)=>{
+    var todo = new Todo({ 
+        text:req.body.text  
+    });
+
+    todo.save().then((doc)=>{
+        res.send(doc);
+    },(e)=>{
+        res.status(400).send(e);
+    });
 });
 
-//声明instance
-var newTodo = new Todo({
-    text:'Cook dinner'
-});
 
-//保存instance
-newTodo.save().then(
-    (doc)=>{
-        console.log('Saved todo:',doc);
-    },(err)=>{
-        console.log(err);
-    }
-);  
+
+app.listen(3000,()=>{
+    console.log('Started on port 3000');
+});
